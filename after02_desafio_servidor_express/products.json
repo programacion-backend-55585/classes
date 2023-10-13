@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1,
+        "name": "Pizza Congelada 1",
+        "price": 100
+    },
+    {
+        "id": 2,
+        "name": "Ratattooile",
+        "price": 50
+    },
+    {
+        "id": 3,
+        "name": "Pizza Congelada 3",
+        "price": 100
+    },
+    {
+        "id": 4,
+        "name": "Pizza Congelada 4",
+        "price": 100
+    },
+    {
+        "id": 5,
+        "name": "Pizza Congelada 5",
+        "price": 100
+    }
+]
