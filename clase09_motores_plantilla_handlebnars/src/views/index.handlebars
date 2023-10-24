@@ -1,0 +1,22 @@
+<div>
+    <h2>Hola {{ user.name }}</h2>
+
+    {{#if user.isAdmin }}
+        Eres Admin.
+        
+        {{#each foods}}
+            <div>
+                <p>{{this.name}}</p>
+                <p><b>{{this.price}}</b></p>
+                <hr>
+            </div>
+        {{/each}}
+
+    {{else}}
+        No tienes permisos para ver la lista
+    {{/if}}
+
+</div>
+
+<script src="/js/index.js">
+</script>
