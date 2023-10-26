@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Go Go Websockets 🚀🚀 </h1>
+
+        <input type="text" id="mensaje">
+        <button id="sendMensaje">Enviar Mensaje</button>
+        <hr>
+        <div id="box"></div>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            const name = prompt('Escriba su nombre')
+
+            const socket = io()
+            socket.emit('new', name)
+
+            document.querySelector('#sendMensaje').onclick = () => {
+                const value = document.querySelector('#mensaje').value
+
+                socket.emit('message', `[${name}]: ${value}`)
+            }
+
+            socket.on('mensaje_al_resto', (data) => {
+                console.log(data)
+            })
+            socket.on('response', console.log)
+            socket.on('all', (data) => {
+                document.querySelector('#box').innerHTML += `<p>${data}</p>`
+            })
+            socket.on('new-user', name => {
+                document.querySelector('#box').innerHTML += `
+                    <p>
+                        <i>New user: <b>${name}</b></i>
+                    </p>
+                `
+            })
+
+        </script>
+    </body>
+
+</html>
