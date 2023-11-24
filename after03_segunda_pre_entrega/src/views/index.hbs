@@ -1,0 +1,62 @@
+
+<div>
+    {{#each payload}}
+        <div>
+            Name: <b>{{this.name}}</b> <br>
+            Price: {{ this.price }} <br>
+            Stock: {{ this.stock }} <br>
+            Thmbnail: {{ this.thumbnail }}
+        </div>
+        <hr>
+    {{/each}}
+</div>
+
+Total Products: {{ totalDocs }} <br>
+Pages: {{page}}  / {{ totalPages }} <br>
+Limit: <input id="limit" type="text" value="{{limit}}"><br>
+Page: <input id="page" type="text" value="{{page}}"><br>
+Buscar por nombre: <input id="query"  type="text" value="{{query}}"><br>
+Disponibilidad: <input type="checkbox" name="" id=""><br>
+Category: <select name="" id="">
+    <option value="bebidas">Bebidas</option>
+    <option value="comidas">Comidas</option>
+</select><br>
+
+<button id="btnSearch">Search</button>
+
+<br><br><br>
+<input id="prevPage" type="hidden" value="{{prevPage}}" >
+<input id="nextPage" type="hidden" value="{{nextPage}}" >
+
+<a id="btnPrev" href="#" {{#unless hasPrevPage }}style="display: none;"{{/unless}}>Previus</a>
+<a id="btnNext" {{#unless hasNextPage }}style="display: none;"{{/unless}} href="#">Next</a>
+
+<script>
+    document.querySelector('#btnPrev').onclick = () => {
+        const prevPage = document.querySelector('#prevPage').value
+        const limit = document.querySelector('#limit').value
+        const query = document.querySelector('#query').value
+
+        const url = `/?page=${prevPage}&limit=${limit}&query=${query}`
+        document.location.href = url
+    }
+
+    document.querySelector('#btnNext').onclick = () => {
+        const nextPage = document.querySelector('#nextPage').value
+        const limit = document.querySelector('#limit').value
+        const query = document.querySelector('#query').value
+
+        const url = `/?page=${nextPage}&limit=${limit}&query=${query}`
+        document.location.href = url
+    }
+
+    document.querySelector('#btnSearch').onclick = () => {
+        const limit = document.querySelector('#limit').value
+        const page = document.querySelector('#page').value
+        const query = document.querySelector('#query').value
+
+        const url = `/?page=${page}&limit=${limit}&query=${query}`
+        document.location.href = url
+    }
+
+</script>

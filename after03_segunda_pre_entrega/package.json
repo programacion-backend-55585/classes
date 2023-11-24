@@ -1,0 +1,19 @@
+{
+  "name": "after03_segunda_pre_entrega",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.2",
+    "mongoose": "^8.0.1",
+    "mongoose-paginate-v2": "^1.7.4"
+  }
+}
