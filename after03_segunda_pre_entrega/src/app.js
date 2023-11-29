@@ -11,6 +11,7 @@ app.engine('hbs', handlebars.engine({extname: 'hbs'}))
 app.set('views', __dirname + '/views')
 app.set('view engine', 'hbs')
 
+
 app.get('/',  async (req, res) => {
     const limit = parseInt(req.query?.limit ?? 4)
     const page = parseInt(req.query?.page ?? 1)
