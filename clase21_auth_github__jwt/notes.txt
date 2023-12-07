@@ -1,0 +1,5 @@
+App ID: 678460
+
+Client ID: Iv1.f16ee1054cef2024
+
+Secret: a3a49a21d0f704a23dae5a0591cbf393b36cefd5
