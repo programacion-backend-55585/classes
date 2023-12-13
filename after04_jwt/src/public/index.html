@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <input type="text" id="message"><br>
+    <button id="btn-generate">Generar y almacenar el token</button>
+    <br>
+    <button id="btn-verify">Verify</button>
+
+    <script>
+
+        document.querySelector('#btn-generate').onclick = e => {
+            const message = document.querySelector('#message').value
+            fetch(`/create?message=${message}`)
+                .then(response => response.json())
+                .then(result => {
+                    localStorage.setItem('token', result.token)
+                })
+                .catch(e => console.error(e))
+        }
+
+        document.querySelector('#btn-verify').onclick = e => {
+            const token = localStorage.getItem('token')
+            if (!token) return alert('No hay token')
+            console.log('To verify with token ', token)
+
+            fetch(`/verify`, { 
+                body: JSON.stringify({ token }),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                method: 'post'
+            })
+                .then(response => response.json())
+                .then(result => () => {
+                    console.log(result)
+                })
+                .catch(e => console.error(e))
+        }
+
+    </script>
+
+</body>
+
+</html>
