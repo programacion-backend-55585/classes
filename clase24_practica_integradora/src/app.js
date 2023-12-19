@@ -3,8 +3,10 @@ import mongoose from 'mongoose'
 import handlebars from 'express-handlebars'
 import cookieParser from 'cookie-parser'
 import session from 'express-session'
+import passport from 'passport'
 import sessionRouter from './routes/session.router.js'
 import __dirname from './utils.js'
+import initializePassport from './config/passport.config.js'
 
 const app = express()
 
@@ -24,6 +26,10 @@ app.use(cookieParser())
 // Routes
 app.use('/', sessionRouter)
 
+// Passport
+initializePassport()
+app.use(passport.initialize())
+app.use(passport.session())
 
 // Run
 mongoose.connect('mongodb://admin:admin@127.0.0.1:27017', { dbName: 'clase24_555' })

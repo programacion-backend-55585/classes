@@ -1,23 +1,48 @@
 import { Router } from 'express'
+import passport from 'passport'
 import UserModel from '../models/user.model.js'
 
 const router = Router()
 
-router.get('/', async(req, res) => {
+// HOME
+router.get('/', async (req, res) => {
     const users = await UserModel.find().lean()
     res.render('index', { users })
 })
 
-router.get('/private', (req, res) => {
-    res.render('private', {
-        user: {
-            name: 'name',
-            email: 'email',
-            social: 'social',
-            role: 'role',
+// GITHUB
+router.get(
+    '/githublogin',
+    passport.authenticate('github', { scope: ['user:email'] }),
+    (req, res) => { }
+)
+
+router.get(
+    '/githubcallback',
+    passport.authenticate(
+        'github',
+        { failureRedirect: '/error?error=GithubFail' }
+    ),
+    (req, res) => {
+        if (!req.user) {
+            return res.status(400).send('Invalid github')
         }
-    })
-})
+
+        res.cookie('cookieJWT', req.user.token).redirect('/')
+    }
+)
+
+
+// PRIVATE wiht JWT
+router.get(
+    '/private',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        const { user } = req.user
+        console.log({ user })
+        res.render('private', { user })
+    }
+)
 
 router.get('/error', (req, res) => {
     const error = req.query?.error ?? 'Error on Server'
