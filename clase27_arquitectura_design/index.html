@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>This page is for Grettings !!</h1>
+
+    <button id="btn">Enviar consulta</button>
+    <div id="result"></div>
+
+    <script>
+        document.querySelector('#btn').onclick = () => {
+            fetch('http://127.0.0.1:8081', { method: 'POST'} )
+                .then(result => result.json())
+                .then(json => {
+                    console.log(json)
+                    document.querySelector('#result').innerHTML = json.result
+                })
+                .catch(e => {
+                    console.error('Hubo un error 💩')
+                    console.error(e)
+                })
+        }
+    </script>
+
+</body>
+</html>
