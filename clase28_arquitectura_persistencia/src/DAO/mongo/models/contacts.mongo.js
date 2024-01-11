@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 
 export default mongoose.model('contacts', new mongoose.Schema({
-    name: String
+    name: String,
+    age: String,
+    active: Boolean
 }))

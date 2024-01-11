@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import config from "../config/config.js";
 
 export let Contacts
@@ -16,6 +17,9 @@ switch (config.persistence) {
         break
 
     case 'MONGO':
+        await mongoose.connect(config.mongoURL, {dbName: config.mongoDBName})
+        console.log('DB connected!!')
+
         const { default: ContactsMongo } = await import('./mongo/contacts.mongo.js')
         Contacts = ContactsMongo
 

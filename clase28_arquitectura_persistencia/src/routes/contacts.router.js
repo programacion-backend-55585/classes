@@ -1,19 +1,17 @@
 import { Router } from "express";
-
-import { Contacts } from "../DAO/factory.js";
+import { contactService } from "../repositories/index.js";
 
 const router = Router()
-const contactsService = new Contacts()
 
 router.get('/', async (req, res) => {
-    const result = await contactsService.get()
+    const result = await contactService.getContacts()
     res.send({ status: 'success', payload: result })
 })
 
 router.post('/', async (req, res) => {
     const contactBody = req.body
-
-    const result = await contactsService.insert(contactBody)
+    
+    const result = await contactService.createContact(contactBody)
     res.send({ status: 'success', payload: result })
 })
 

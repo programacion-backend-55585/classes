@@ -9,9 +9,4 @@ app.use(express.json())
 app.get('/', (req, res) => res.send('OK'))
 app.use('/contacts', contactsRouter)
 
-mongoose.connect(config.mongoURL, {dbName: config.mongoDBName})
-    .then(r => {
-        console.log('DB connected.')
-        app.listen(8080, () => console.log('Runnig 🏃 ...'))
-    })
-    .catch(e => console.error(e))
+app.listen(8080, () => console.log('Runnig 🏃 ...'))
