@@ -1,0 +1,16 @@
+{
+  "name": "clase33_nvm_npm_use_library",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "clase33_suma": "^1.0.1"
+  }
+}
