@@ -1,0 +1,17 @@
+{
+  "name": "clase36_docker_kubernets",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "R2",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

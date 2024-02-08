@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubeservicio
+spec:
+  selector:
+    app: kubepizza
+  ports:
+    - port: 8081
+      targetPort: 8080
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubeservicer2
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: kubepizza
+  template:
+    metadata:
+      labels:
+        app: kubepizza
+    spec:
+      containers:
+        - name: kubecontenedores
+          image: arturoverbel/r2service:1.0.0
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Always
