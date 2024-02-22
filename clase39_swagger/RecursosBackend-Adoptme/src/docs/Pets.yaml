@@ -1,0 +1,85 @@
+paths:
+  /api/pets:
+    get:
+      summary: Obiene todas las mascotas
+      tags:
+        - Pets
+      responses:
+        "200":
+          description: Las mascotas fueron devbueltas satisfactoriamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/Pet'
+        "500":
+          description: Error interno del Server. Query defectuoso de la DB
+    post:
+      summary: Crear Mascotas
+      tags:
+        - Pets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/requestBodies/insertPet'
+  /api/pets/{uid}:
+    get:
+      summary: Obtiene una mascota por ID
+      tags:
+        - Pets
+      parameters:
+      - name: uid
+        in: path
+        required: true
+        description: ID de la mascota que se solicita
+        schema:
+          type: string
+      responses:
+        "200":
+          description: La masctoa fue devuelta satisfactoriamente
+        "500":
+          description: Error interno del server
+        "404":
+          description: No se encontro la mascota
+components:
+  schemas:
+    Pet:
+      type: object
+      properties:
+        _id: 
+          type: ObjectId
+          description: ID auto generado por mongo
+        name:
+          type: string
+          description: El nombre de la mascotas
+        birthDate:
+          type: string
+          description: Fecha de nacimiento de la mascota (dd-mm-yyyy)
+        specie:
+          type: string
+          description: La especie de la mascota (dog, cat)
+      example:
+        _id: ObjectId("64ea27e6bdb155ef69540707")
+        name: Firualis
+        birthDate: 12-30-2020
+        specie: dog
+  requestBodies:
+    insertPet:
+      type: object
+      properties:
+        name:
+          type: string
+          description: El nombre de la mascotas
+        birthDate:
+          type: string
+          description: Fecha de nacimiento de la mascota (dd-mm-yyyy)
+        specie:
+          type: string
+          description: La especie de la mascota (dog, cat)
+      example:
+        name: Firualis
+        birthDate: 12-30-2020
+        specie: dog
